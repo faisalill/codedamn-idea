@@ -27,7 +27,7 @@ third();
 
 ```
 Here the function `first()` is called at line 11. When the javascript interpreter stumbles upon the function call it  sends it to the call stack as shown below . 
-![8717bc7429318a3ea3587f8d9e9bac097fbcc213](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/8717bc7429318a3ea3587f8d9e9bac097fbcc213)
+![8717bc7429318a3ea3587f8d9e9bac097fbcc213](./call-stack-working-gec.png)
 Similarly the same process of pushing and popping occurs for the `second()` and `third()` function. `GEC()` stands for Global Execution Context which will be dealt with later on.
 #### Example 2:
 ```javascript
@@ -46,7 +46,7 @@ function third(){
 first();
 ```
 In this program `first()` calls  `second()` which internally calls `third()`. In this case when the interpreter stumbles on the function call at line 13 the following process happens.
-![9b68e50615e2c6a591fd547b9ea5f9b1aa2944a4](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/9b68e50615e2c6a591fd547b9ea5f9b1aa2944a4)
+![9b68e50615e2c6a591fd547b9ea5f9b1aa2944a4](./call-stack-multiple-functions-final.png)
 In the function call `third()` was the last one to get pushed and hence is the first one to pop out followed by `second()` then `third()` following the LIFO(Last in First Out) order .
 
 Now that we know what a call stack is, javascript at its core is a single-threaded language which means that it has only one call stack through which things happen one at a time. Blocking of this single thread can stop the whole program and when done in a web environment will suspend the interactivity of the web app.
