@@ -96,7 +96,7 @@ Line 2: `y` is allocated memory and initialized to `undefined`. <br>
 Line 3: `getSum()` is allocated memory and it's code is stored.<br>
 Line 8: `sum1` is allocated memory and initialized to `undefined`.<br>
 Line 9: `sum2` is allocated memory and initialized to `undefined`.<br><br>
-![e9f8240642f96367e60a45514b980d07f7edb69e](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/e9f8240642f96367e60a45514b980d07f7edb69e)
+![e9f8240642f96367e60a45514b980d07f7edb69e](./gec-creation-phase.png)
 <br>
 ### Execution Phase: 
 >During execution phase the code is executed line by line. It assigns values to variables and executes the function calls if it encounters any.
@@ -104,19 +104,19 @@ Line 9: `sum2` is allocated memory and initialized to `undefined`.<br><br>
 Line 1:  `x` is assigned a value of `100`.<br>
 Line 2:  `y` is assigned a value of `50`.<br>
 Line 3:  Skips the function because there is nothing to execute (not a function call).<br>
-![a7dbd53e2770318ad30b958d5fd21192086a2274](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/a7dbd53e2770318ad30b958d5fd21192086a2274)
+![a7dbd53e2770318ad30b958d5fd21192086a2274](./gec-execution-phase-1.png)
 <br>
 Line 8: Invokes `getSum()` function and creates a new FEC (Function Execution Context) for it and pushes it into the Call Stack.
 #### FEC Creation Phase: 
 Line 3: `n1` and `n2` are allocated memory and initialized to `undefined`.<br>
 Line 4: `sum` variable is allocated memory and initialized to `undefined`.<br> <br>
-![eb09201fc7cfdf47c1da9eaddc53880470747e54](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/eb09201fc7cfdf47c1da9eaddc53880470747e54)
+![eb09201fc7cfdf47c1da9eaddc53880470747e54](./fce-creation-phase.png)
 <br>
 #### FEC Execution Phase:
 Line 3: `n1` and `n2` are assigned 100 and 50 respectively.<br>
 Line 4: `sum` is assigned the final value of the calculation i.e. 150.<br>
 Line 5:  `return` tells the FCE to return the value of `sum` i.e. `150` to the GEC (Global Execution Context).<br>
-![efd50d3ec7e146318999de41eb06607ffe7e58e2](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/efd50d3ec7e146318999de41eb06607ffe7e58e2)
+![efd50d3ec7e146318999de41eb06607ffe7e58e2](./fce-execution-phase.png)
 FCE is popped from the Call Stack since it's execution is done. Now back to GEC Execution Phase.<br>
 Line 9: Invokes `getSum()` function and creates a new FEC (Function Execution Context) for it and pushes it into the Call Stack. Pretty much the same happens except the parameters passed here are `10` and `5`.<br>
 
@@ -149,7 +149,7 @@ let letX = 20;
 const constX = 30;
 ```
 In the code above only varX logs as `undefined` where as letX and constX give error. 
-![a65d638accba83d647b124a2e727e4ac551e3458](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-22/a65d638accba83d647b124a2e727e4ac551e3458)
+![a65d638accba83d647b124a2e727e4ac551e3458](./variable-lifecycles.png)
 >Unlike `var` which is available after the Creation Phase initialized to `undefined`. `let` and `const`  have a `Temporal Dead Zone` where their values are not accessible until they are assigned a value in the Execution Phase.
 Hence, we get an error trying to log `letX` and `constX` in Line 2 and 3 where as they are assigned values later in Line 6 and 7 respectively. 
 
