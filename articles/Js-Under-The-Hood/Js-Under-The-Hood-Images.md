@@ -202,7 +202,7 @@ First Line
 Last Line
 Hello World
 ```
-We get `First Line`, `Last Line` followed by `Hello World` at the end, which shows that the `setTimeout()` function in Line 7 did not suspend the execution of the rest of the code even tho we used it to execute `logHelloWorld()` after 1000 ms. The internal working of it line by line is explained below :<br>
+We get `First Line`, `Last Line` followed by `Hello World` at the end, which shows that the `setTimeout()` function in Line 7 did not suspend the execution of the rest of the code even tho we used it to execute `logHelloWorld()` after 1000 ms. The internal working of it line by line is explained below <br>
 Line 1: `console.log("First Line")` is pushed to the call stack for  execution and when done it is popped off.<br>
 ![e57e608b865b73305f0981ac5c0c41ee027c61da](./async-first-line.png)
 Line 3: No Function is called, hence skipped.<br>
@@ -210,7 +210,7 @@ Line 7: `setTimeout()` is pushed to the Call Stack with it's two arguments `logH
 ![c3f9101983159f1ee6bcbecea599731adc896980](./async-fourth-line-final.png)
 Line 9: `console.log("Last Line")` is pushed to the call stack to be executed and popped off once it is done.<br>
 ![730fc305007d3687d6afb552d66d31fe7b623d0a](./async-seventh-line.png)
-When the 1000s timer is done `logHelloWorld` call back function is pushed to the Task Queue.:<br> 
+When the 1000s timer is done `logHelloWorld` call back function is pushed to the Task Queue.<br> 
 > Task Queue is a `queue` which is a data structure similar to Stack but follows the FIFO(First in First Out) approach.
 
 ![c87373fd0aea47e8e15f601bc108f48c2e1bb948](./async-cb-pushed-task.png)
