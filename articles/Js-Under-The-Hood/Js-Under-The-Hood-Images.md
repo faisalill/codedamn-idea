@@ -204,24 +204,24 @@ Hello World
 ```
 We get `First Line`, `Last Line` followed by `Hello World` at the end, which shows that the `setTimeout()` function in Line 7 did not suspend the execution of the rest of the code even tho we used it to execute `logHelloWorld()` after 1000 ms. The internal working of it line by line is explained below :<br>
 Line 1: `console.log("First Line")` is pushed to the call stack for  execution and when done it is popped off.<br>
-![e57e608b865b73305f0981ac5c0c41ee027c61da](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/e57e608b865b73305f0981ac5c0c41ee027c61da)
+![e57e608b865b73305f0981ac5c0c41ee027c61da](./async-first-line.png)
 Line 3: No Function is called, hence skipped.<br>
 Line 7: `setTimeout()` is pushed to the Call Stack with it's two arguments `logHelloWorld` which is a call back function and `1000` which is time of delay in ms. So a timer of 1000 ms is set in the Web Api environment along with it the call back function is registered and the `setTimeout()` is popped from the call stack.<br>
-![c3f9101983159f1ee6bcbecea599731adc896980](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/c3f9101983159f1ee6bcbecea599731adc896980)
+![c3f9101983159f1ee6bcbecea599731adc896980](./async-fourth-line-final.png)
 Line 9: `console.log("Last Line")` is pushed to the call stack to be executed and popped off once it is done.<br>
-![730fc305007d3687d6afb552d66d31fe7b623d0a](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/730fc305007d3687d6afb552d66d31fe7b623d0a)
+![730fc305007d3687d6afb552d66d31fe7b623d0a](./async-seventh-line.png)
 When the 1000s timer is done `logHelloWorld` call back function is pushed to the Task Queue.:<br> 
 > Task Queue is a `queue` which is a data structure similar to Stack but follows the FIFO(First in First Out) approach.
 
-![c87373fd0aea47e8e15f601bc108f48c2e1bb948](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/c87373fd0aea47e8e15f601bc108f48c2e1bb948)
+![c87373fd0aea47e8e15f601bc108f48c2e1bb948](./async-cb-pushed-task.png)
 The Event Loop makes sure that `logHelloWorld` is pused from the Task Queue to the Call Stack for it's execution. 
 > Event Loop is a running process which checks if the Call Stack if empty and if found empty it checks the Task Queue, if any Call backs are found in the Task Queue it pushes them to the Call Stack for it to get executed.
  
-![c3814f0d2b752927b022c181cf18b5d9f64b7efb](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/c3814f0d2b752927b022c181cf18b5d9f64b7efb)
+![c3814f0d2b752927b022c181cf18b5d9f64b7efb](./async-cb-call-pushed.png)
 When `logHelloWorld` is pushed to the Call Stack it gets executed and `Hello World` is logged in the console.
-![5d5f5af6e8a7a058d6a225b46426437e6284db61](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/5d5f5af6e8a7a058d6a225b46426437e6284db61)
+![5d5f5af6e8a7a058d6a225b46426437e6284db61](./async-cb-popped.png)
 This is how an Asynchronous code works. The same happens for DOM Events such as click, mouse over, keyboard, which when triggered get registered in the web api evironment with the call back being pushed to the `Task Queue` which then is managed by the `Event Loop` to be pushed to the `Call Stack` for execution. Hence, when a DOM Event is triggered it does not suspend the main thread until its execution is complete. In the case of `Promises` the Web Api pushes them to a `queue` called `Micro-Task Queue` which has a priority higher than that of the `Task Queue` causing the Tasks in `Micro-Task Queue` to be pushed to the `Call Stack` prior to the Tasks present in the `Task Queue` by the `Event Loop`.
-![edf063de873999af8a3b4dd2fcbe7c0c55ef7d20](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-23/edf063de873999af8a3b4dd2fcbe7c0c55ef7d20)
+![edf063de873999af8a3b4dd2fcbe7c0c55ef7d20](./async-micro-task.png)
 For Example: 
 ```javascript
 console.log("First Line")
