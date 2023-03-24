@@ -260,3 +260,45 @@ Timeout 2 executed
 ```
 From the output of the code example above we can see that both the promises are executed prior to the `setTimeout` functions because of `Promises` being pushed to  the prioritized `Micro-Task Queue` which get pushed into the Call Stack prior to `Task Queue`. 
 
+## Memory Storage:
+Storage of variables differs depending on the Data Type. In Javascript there are 2 Data Types `Primitive` and `Reference` types.
+#### Primitive Type :
+Primitive Types are stored directly in the stack from where they are accessed since they have a constant size.
+1. String
+2. Number
+3. Boolean
+4. Null
+5. Undefined
+6. Symbol
+7. BigInt
+#### Reference Type :
+Reference Types are stored in the memory heap and their value is accessed by a reference pointing towards its value in the memory heap. 
+1. Arrays
+2. Functions 
+3. Objects<br>
+Let's understand using few examples:<br>
+In the example below we have two variables `name` and `age` with values `Jhon` and `30` assigned to them. Since they are primitive data types they are stored directly in the stack as shown in the below diagram.
+![a7a900bfd365cff5a0b78be4bf4d7be0461b6454](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-24/a7a900bfd365cff5a0b78be4bf4d7be0461b6454)<br>
+Now in this example, we have considered `person` an object which is of the Reference Type. We can see below that the value of `person` an object is  in the memory heap rather than the stack and variable name `person` is pointing towards its value in the memory heap through which it can be accessed.<br>
+![c8bc84252def13f132a6b9cb790ba3ffdf18ab46](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-24/c8bc84252def13f132a6b9cb790ba3ffdf18ab46)
+We can see more differences between them when we try to assign the value of other variable to them and try changing it as shown below.
+![cbf44c176b6103169bd3fe81132b7e8e4537a709](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-24/cbf44c176b6103169bd3fe81132b7e8e4537a709)
+The above example has two more variables added to it `secondName` which is assigned the value of `name` which we can see is stored in the stack as `secondName = "Jhon"` but in the case of `secondPerson` to which we have assigned the value of `person`, `secondPerson` points to the same value in the memory heap which `person` is pointing towards. So, since they are pointing towards the same value changing either one of them will change the value of the object in the memory heap. For Example: 
+```javascript
+let person = {
+name : "Brad"
+age: 40
+}
+console.log(person.name)
+let secondName = person;
+//Changing the value of secondName.name
+secondName.name = "Beal"
+console.log(person.name)
+```
+Output:
+```bash
+Brad
+Beal
+```
+![37250d53d4334cc833421a354d00e685ed844a78](https://s3.us-east-1.amazonaws.com/creator-assets.codedamn.com/fiveyyyyy-6416ead578882d000daa746a/MARKDOWN/2023-03-24/37250d53d4334cc833421a354d00e685ed844a78)
+We can see from the output that when we change the value of `secondName.name` it changes the value of the object stored in the memory heap which even `person` is pointing towards. Therefore, explaining the Line 9 of the code in which gives us the output `Beal` rather than `Brad`.
