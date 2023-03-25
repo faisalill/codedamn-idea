@@ -302,3 +302,6 @@ Beal
 ```
 ![37250d53d4334cc833421a354d00e685ed844a78](./memory-heap-3.png)
 We can see from the output that when we change the value of `secondName.name` it changes the value of the object stored in the memory heap which even `person` is pointing towards. Therefore, explaining the Line 9 of the code in which gives us the output `Beal` rather than `Brad`.
+
+#### Garbage Collection: 
+Javascript is a Garbage Collected language in other words we don't have the need to manage memory by removing certain Data from the heap or stack it is automatically done by the garbage collector which removes data of variables, functions , etc.... when they are no longer needed keeping only the data which is required for further or current execution of the code. 
