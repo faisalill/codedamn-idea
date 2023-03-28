@@ -156,7 +156,9 @@ Hence, we get an error trying to log `letX` and `constX` in Line 2 and 3 where a
 
 ## Asynchronous Javascript:
 In this section we will understand how Javascript deals with asynchronous code without blocking the main thread it works on. First lets learn about what Synchronous and Asynchronous mean in Javascript:
+
 #### Synchronous Code:
+
 We know that Javascript code is executed line by line, when a particular line / block of code takes some time to complete the operation it blocks the whole thread until it is done. Such code is known as blocking code. For Example:
 ```javascript
 console.log("First Line")
