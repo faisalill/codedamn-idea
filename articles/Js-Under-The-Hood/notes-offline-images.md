@@ -305,3 +305,122 @@ We can see from the output that when we change the value of `secondName.name` it
 
 #### Garbage Collection: 
 Javascript is a Garbage Collected language in other words we don't have the need to manage memory by removing certain Data from the heap or stack it is automatically done by the garbage collector which removes data of variables, functions , etc.... when they are no longer needed keeping only the data which is required for further or current execution of the code. 
+
+## Javascript Engines:
+Javascript Engines are software components which convert javascript code to binary / computer understandable language. They are present in the browser and help run the js code given.
+#### List of Js Engines:
+| Browser      |Engine |
+| ----------- | ----------- |
+| Chrome      | v8 Engine    |
+| FireFox   | Spider Monkey |
+| Edge  | Chakra |
+| Safari  | JavaScript Core |
+#### Compiled vs Interpreted Languages:
+Compiled languages are directly converted to machine understandable code, hence they tend to be faster than interpreted languages which get executed line by line. Compiled languages have a slower write-time (Requirement to define the type of variable and manual memory management) but faster run-time and it is the opposite for Interpreted Languages. 
+#### Javascript Engine Working: 
+![324f921048b311fecfc3ffaba99e72cdd4b468c3](./js-engine-final.png)
+##### Parser: 
+It checks the syntax and makes sure the code does not have errors.
+##### Abstraction Syntax Tree: 
+After the parser checks for errors in the code and if none are found it generates an `AST` which is tree of nodes representing the code. For Example:
+```javascript 
+const x = 100;
+function addTen (num){
+return x + 10;
+}
+```
+The above code gets converted into a tree which in json would look like something below:
+```json
+{
+  "type": "Program",
+  "start": 0,
+  "end": 54,
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "start": 0,
+      "end": 14,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 6,
+          "end": 13,
+          "id": {
+            "type": "Identifier",
+            "start": 6,
+            "end": 7,
+            "name": "x"
+          },
+          "init": {
+            "type": "Literal",
+            "start": 10,
+            "end": 13,
+            "value": 100,
+            "raw": "100"
+          }
+        }
+      ],
+      "kind": "const"
+    },
+    {
+      "type": "FunctionDeclaration",
+      "start": 15,
+      "end": 54,
+      "id": {
+        "type": "Identifier",
+        "start": 24,
+        "end": 30,
+        "name": "addTen"
+      },
+      "expression": false,
+      "generator": false,
+      "async": false,
+      "params": [
+        {
+          "type": "Identifier",
+          "start": 32,
+          "end": 35,
+          "name": "num"
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "start": 36,
+        "end": 54,
+        "body": [
+          {
+            "type": "ReturnStatement",
+            "start": 38,
+            "end": 52,
+            "argument": {
+              "type": "BinaryExpression",
+              "start": 45,
+              "end": 51,
+              "left": {
+                "type": "Identifier",
+                "start": 45,
+                "end": 46,
+                "name": "x"
+              },
+              "operator": "+",
+              "right": {
+                "type": "Literal",
+                "start": 49,
+                "end": 51,
+                "value": 10,
+                "raw": "10"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sourceType": "module"
+}
+```
+Use https://astexplorer.net/ to see the Tree version of it.
+##### Interpreter: 
+It converts the AST to Byte Code. It does not compile directy to Machine Code because different CPU architecture have unique machine code, but Byte Code is universal and can be optimized. 
+##### JIT Compiler: 
+It converts the Byte Code to machine code on the fly for the machine to execute it. 
